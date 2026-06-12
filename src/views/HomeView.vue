@@ -31,7 +31,7 @@
 
 <script>
 import { getPaises } from '../service/apiFootball';
-import { getSelecoes } from '../service/apiFootball';
+import { getSelecao } from '../service/apiFootball';
 
 export default {
     name: "HomeView",
@@ -55,7 +55,7 @@ export default {
 
         async carregarSelecoes() {
             try {
-                const dados = await getSelecoes(this.paisSelecionado);
+                const dados = await getSelecao(this.paisSelecionado);
                 this.listaSelecao = dados;
                 console.log("Seleção carregadas com sucesso");
             } catch (erro) {
