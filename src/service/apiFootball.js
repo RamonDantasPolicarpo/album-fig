@@ -1,4 +1,5 @@
-const BASE_URL = 'https://v3.football.api-sports.io';
+// const BASE_URL = 'https://v3.football.api-sports.io';
+const BASE_URL = 'https:localhost:3000';
 const API_KEY = import.meta.env.development.VITE_API_TOKEN;
 
 export async function getPaises() {
