@@ -1,7 +1,15 @@
-<script setup>
-import HomeComponent from './components/HomeComponent.vue';
-</script>
-
 <template>
   <HomeComponent />
+  <router-view/>
 </template>
+
+<script>
+import HomeComponent from './components/HomeComponent.vue'
+
+export default {
+  name: 'App',
+  components: {
+    HomeComponent,
+  }
+}
+</script>
