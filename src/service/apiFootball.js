@@ -16,8 +16,21 @@ export async function getPaises() {
 }
 
 export async function getSelecao(nomePais) {
-    try {
-        const responseTime = await fetch(`${BASE_URL}/teams?name=${nomePais}`, {
+
+    const responseTime = await fetch(`${BASE_URL}/teams?name=${nomePais}`, {
+        method: 'GET',
+        headers: {
+            'x-apisports-key': API_KEY,
+            'x-rapidapi-host': 'v3.football.api-sports.io'
+        }
+    });
+
+    const dadosSelecao = await responseTime.json();
+
+    if (dadosSelecao.response && dadosSelecao.response.length > 0) {
+        const idSelecao = dadosSelecao.response[0].team.id;
+
+        const responseJogadores = await fetch(`${BASE_URL}/players/squads?team=${idSelecao}`, {
             method: 'GET',
             headers: {
                 'x-apisports-key': API_KEY,
@@ -25,27 +38,12 @@ export async function getSelecao(nomePais) {
             }
         });
 
-        const dadosSelecao = await responseTime.json();
+        const dadosJogadores = await responseJogadores.json();
 
-        if (dadosSelecao.response && dadosSelecao.response.length > 0) {
-            const idSelecao = dadosSelecao.response[0].team.id;
-
-            const responseJogadores = await fetch(`${BASE_URL}/players/squads?team=${idSelecao}`, {
-                method: 'GET',
-                headers: {
-                    'x-apisports-key': API_KEY,
-                    'x-rapidapi-host': 'v3.football.api-sports.io'
-                }
-            });
-
-            const dadosJogadores = await responseJogadores.json();
-
-            if (dadosJogadores.response && dadosJogadores.response.length > 0) {
-                return dadosJogadores.response[0].players;
-            }
+        if (dadosJogadores.response && dadosJogadores.response.length > 0) {
+            return dadosJogadores.response[0].players;
         }
-    } catch (erro) {
-        console.error('Erro ao obter os dados da seleção:', erro);
     }
+
 
 }

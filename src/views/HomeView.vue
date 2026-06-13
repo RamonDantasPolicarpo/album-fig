@@ -4,27 +4,29 @@
             <h1 class="text-3xl font-bold text-white mb-6 text-center">
                 Álbum de Figurinhas ⚽
             </h1>
+            <p v-if="paisSelecionado" class="text-white text-center text-xl">
+                Seleção: <span class="font-bold">{{ paisSelecionado }}</span>
+            </p>
         </div>
         <div v-if="listaPaises.length === 0" class="text-center text-gray-400 mt-6">
             <p>Carregando base de dados...</p>
         </div>
         <div v-else class="flex flex-col gap-2 mt-6">
             <label for="paises" class="font-semibold text-gray-200"> Escolha um País</label>
-            <select 
-            id="paises"
-            v-model="paisSelecionado"
-            class="p-3 border border-mist-600 rounded-3xl bg-mist-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-white">
-        <option value="" disabled>Selecione uma opção...</option>
-        <option v-for="pais in listaPaises" :key="pais.name" :value="pais.name">
-            {{ pais.name }}
-        </option>
-        </select>
-        <p class="mt-4 text-sm text-white" v-if="paisSelecionado">
-            País selecionado: <span class="font-bold text-emerald-300">{{ paisSelecionado }}</span>
-        </p>
+            <select id="paises" 
+                v-model="paisSelecionado"
+                @change="carregarSelecoes()"
+                class="p-3 border border-mist-600 rounded-3xl bg-mist-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-white">
+                <option value="" disabled>Selecione uma opção...</option>
+                <option v-for="pais in listaPaises" :key="pais.name" :value="pais.name">
+                    {{ pais.name }}
+                </option>
+            </select>
         </div>
-        <div v-for="selecao in listaSelecao" :key="selecao.name">
-            <p>{{ selecao.name }}</p>
+        <div v-if="paisSelecionado">
+            <div v-for="jogador in listaSelecao" :key="jogador.name">
+                <p>{{ jogador.name }}</p>
+            </div>
         </div>
     </div>
 </template>
