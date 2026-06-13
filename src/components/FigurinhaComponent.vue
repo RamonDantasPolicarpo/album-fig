@@ -1,13 +1,13 @@
 <template>
-    <div>
-        <div class="w-24 h-24 mb-3 border-4 border-mist-900 rounded-full overflow-hidden bg-gray-200 flex-shrink-0">
+    <div class="bg-mist-700 p-4 rounded-2xl">
+        <div class="w-32 h-32 mb-3 mx-auto border-3 border-mist-900 rounded-3xl overflow-hidden bg-gray-200 flex-shrink-0">
             <img :src="jogador.photo" :alt="'Foto de ' + jogador.name" class="w-full h-full object-cover">
         </div>
 
         <h2 class="text-white font-bold text-lg text-center leading-tight mb-1">
             {{ jogador.name }}
         </h2>
-        <p class="text-emerald-400 font-semibold text-sm mb-3">
+        <p class="text-emerald-400 font-semibold text-sm mb-3 text-center">
             {{ jogador.position }}
         </p>
 

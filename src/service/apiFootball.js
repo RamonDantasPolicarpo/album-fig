@@ -1,5 +1,5 @@
-// const BASE_URL = 'https://v3.football.api-sports.io';
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'https://v3.football.api-sports.io';   
+// const BASE_URL = 'http://localhost:3000';
 const API_KEY = import.meta.env.VITE_API_TOKEN;
 
 export async function getPaises() {
@@ -43,6 +43,7 @@ export async function getSelecao(nomePais) {
         if (dadosJogadores.response && dadosJogadores.response.length > 0) {
             return dadosJogadores.response[0].players;
         }
+        return [];
     }
 
 

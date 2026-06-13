@@ -27,3 +27,4 @@ src/.env.development
 db/timesInglaterra.json
 db/selecaoBrasil.json
 db/jogadoresBrasil.json
+.env.development

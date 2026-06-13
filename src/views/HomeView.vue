@@ -1,6 +1,6 @@
 <template>
     <div class="min-h-screen bg-mist-900 p-10">
-        <div class="max-w-3xl mx-auto bg-emerald-900 p-8 rounded-lg shadow-md">
+        <div class="mx-auto bg-emerald-900 p-8 rounded-lg shadow-md">
             <h1 class="text-3xl font-bold text-white mb-6 text-center">
                 Álbum de Figurinhas ⚽
             </h1>
@@ -23,9 +23,15 @@
                 </option>
             </select>
         </div>
-        <div v-if="paisSelecionado">
-            <div v-for="jogador in listaSelecao" :key="jogador.name">
-                <p>{{ jogador.name }}</p>
+        <div v-if="listaSelecao.length > 0">
+            <h2 class="text-2xl text-white font-bold my-6 text-center">Elenco Convocado</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 max-w-7xl mx-auto">
+                <FigurinhaComponent 
+                    v-for="jogador in listaSelecao" 
+                    :key="jogador.id" 
+                    :jogador="jogador"
+                />
             </div>
         </div>
     </div>
@@ -34,9 +40,13 @@
 <script>
 import { getPaises } from '../service/apiFootball';
 import { getSelecao } from '../service/apiFootball';
+import FigurinhaComponent from '../components/FigurinhaComponent.vue';
 
 export default {
     name: "HomeView",
+    components: {
+        FigurinhaComponent,
+    },
     data() {
         return {
             listaPaises: [],
