@@ -1,7 +1,10 @@
 <template>
     <div class="bg-mist-700 p-4 rounded-2xl">
-        <div class="w-32 h-32 mb-3 mx-auto border-3 border-mist-900 rounded-3xl overflow-hidden bg-gray-200 flex-shrink-0">
-            <img :src="jogador.photo" :alt="'Foto de ' + jogador.name" class="w-full h-full object-cover">
+        <div
+            class="w-32 h-32 mb-3 mx-auto border-3 border-mist-900 rounded-3xl overflow-hidden bg-gray-200 flex-shrink-0">
+            <img :src="'https://wsrv.nl/?url=' + jogador.photo"
+                @error="$event.target.src = 'https://img.icons8.com/?size=200&id=23235&format=png&color=737373'"
+                :alt="'Foto de ' + jogador.name" class="w-full h-full object-cover bg-white">
         </div>
 
         <h2 class="text-white font-bold text-lg text-center leading-tight mb-1">
